@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>文本差异比较</title>
+  <link rel="stylesheet" href="popup.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- 顶部品牌栏 -->
+  <header class="app-header">
+    <div class="app-logo">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <rect width="20" height="20" rx="4" fill="url(#grad)"/>
+        <rect x="3" y="4" width="5.5" height="12" rx="1.5" fill="white" fill-opacity="0.9"/>
+        <rect x="11.5" y="4" width="5.5" height="12" rx="1.5" fill="white" fill-opacity="0.9"/>
+        <rect x="4" y="7" width="3.5" height="1.2" rx="0.4" fill="#FF6B6B" fill-opacity="0.8"/>
+        <rect x="12.5" y="9.5" width="3.5" height="1.2" rx="0.4" fill="#69DB7C" fill-opacity="0.8"/>
+        <defs><linearGradient id="grad" x1="0" y1="0" x2="20" y2="20"><stop stop-color="#667eea"/><stop offset="1" stop-color="#764ba2"/></linearGradient></defs>
+      </svg>
+      <span class="app-title">DiffView</span>
+    </div>
+    <div class="header-actions">
+      <div class="type-selector">
+        <button class="type-chip active" data-type="auto">自动检测</button>
+        <button class="type-chip" data-type="json">JSON</button>
+        <button class="type-chip" data-type="xml">XML</button>
+        <button class="type-chip" data-type="yaml">YAML</button>
+        <button class="type-chip" data-type="text">纯文本</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 输入阶段 -->
+  <div id="input-view">
+    <div class="input-panels">
+      <div class="input-panel">
+        <div class="panel-label">
+          <span class="label-dot dot-original"></span>
+          原始文本
+        </div>
+        <div class="textarea-wrap" id="left-drop-zone">
+          <textarea id="left-input" placeholder="粘贴文本或拖拽文件到这里..." spellcheck="false"></textarea>
+          <div class="drop-overlay">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+            <span>释放文件到此处</span>
+          </div>
+        </div>
+      </div>
+      <div class="divider-line"></div>
+      <div class="input-panel">
+        <div class="panel-label">
+          <span class="label-dot dot-modified"></span>
+          对比文本
+        </div>
+        <div class="textarea-wrap" id="right-drop-zone">
+          <textarea id="right-input" placeholder="粘贴文本或拖拽文件到这里..." spellcheck="false"></textarea>
+          <div class="drop-overlay">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+            <span>释放文件到此处</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 底部操作栏 -->
+    <div class="action-bar">
+      <label class="option-pill" id="sort-keys-label" style="display:none;">
+        <input type="checkbox" id="sort-keys-check">
+        <span class="pill-check"></span>
+        忽略 key 顺序
+      </label>
+      <div class="action-spacer"></div>
+      <button id="clear-btn" class="btn btn-ghost">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4a2 2 0 012-2h4a2 2 0 012 2v2M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/></svg>
+        清空
+      </button>
+      <button id="compare-btn" class="btn btn-primary">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l-7 7 7 7M15 5l7 7-7 7"/></svg>
+        比较差异
+      </button>
+    </div>
+  </div>
+
+  <!-- 结果阶段 -->
+  <div id="result-view" style="display:none;">
+    <div class="result-toolbar">
+      <button id="back-btn" class="btn btn-ghost">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        返回编辑
+      </button>
+      <div class="toolbar-sep"></div>
+      <div class="view-toggle">
+        <button class="toggle-btn active" data-view="side-by-side">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="18" rx="1"/><rect x="14" y="3" width="7" height="18" rx="1"/></svg>
+          并排
+        </button>
+        <button class="toggle-btn" data-view="inline">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="1"/></svg>
+          内联
+        </button>
+      </div>
+      <div id="diff-stats" class="diff-stats"></div>
+      <div class="toolbar-sep"></div>
+      <button id="copy-result-btn" class="btn btn-ghost">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        复制结果
+      </button>
+      <button id="copy-summary-btn" class="btn btn-ghost">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+        复制摘要
+      </button>
+    </div>
+
+    <div id="diff-output"></div>
+  </div>
+
+  <!-- 依赖库 -->
+  <script src="../lib/diff.js"></script>
+  <script src="../lib/formatters.js"></script>
+  <script src="../lib/detector.js"></script>
+  <script src="../lib/renderer.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

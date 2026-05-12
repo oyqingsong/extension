@@ -1,0 +1,215 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  width: 380px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: #0f0f23;
+  color: #eee;
+  font-size: 13px;
+}
+
+.popup { padding: 16px; }
+
+.popup-header {
+  margin-bottom: 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding-bottom: 12px;
+}
+.popup-header h1 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #7fdbca;
+  margin-bottom: 4px;
+}
+.popup-header .url {
+  font-size: 10px;
+  color: #888;
+  word-break: break-all;
+}
+
+/* Section */
+.section { margin-bottom: 16px; }
+.section-title {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #7fdbca;
+  margin-bottom: 8px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid rgba(127,219,202,0.15);
+}
+
+/* Web Vitals Cards */
+.vitals-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.vital-card {
+  background: #16213e;
+  border-radius: 8px;
+  padding: 12px;
+  text-align: center;
+  border: 2px solid transparent;
+  transition: border-color 0.3s;
+}
+.vital-card.rating-good { border-color: #0cce6a; }
+.vital-card.rating-needs-improvement { border-color: #ffa400; }
+.vital-card.rating-poor { border-color: #ff4e42; }
+
+.vital-value {
+  font-size: 22px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: #fff;
+}
+.vital-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: #ccc;
+  margin-top: 2px;
+}
+.vital-desc {
+  font-size: 10px;
+  color: #888;
+  margin-top: 2px;
+}
+
+/* Load Metrics Bar */
+.metric-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0;
+}
+.metric-label {
+  width: 80px;
+  font-size: 12px;
+  color: #aaa;
+  flex-shrink: 0;
+}
+.metric-bar {
+  flex: 1;
+  height: 6px;
+  background: #1a1a2e;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.metric-fill {
+  height: 100%;
+  border-radius: 3px;
+  background: #0cce6a;
+  transition: width 0.5s, background 0.5s;
+  width: 0%;
+}
+.metric-fill.needs-improvement { background: #ffa400; }
+.metric-fill.poor { background: #ff4e42; }
+
+.metric-value {
+  width: 60px;
+  text-align: right;
+  font-weight: 600;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
+}
+
+/* Runtime Grid */
+.runtime-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 8px;
+}
+.runtime-item {
+  text-align: center;
+  background: #16213e;
+  border-radius: 8px;
+  padding: 10px 4px;
+}
+.runtime-value {
+  font-size: 18px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.runtime-label {
+  font-size: 10px;
+  color: #888;
+  margin-top: 2px;
+}
+
+/* Resources Summary */
+.res-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 3px 0;
+  font-size: 12px;
+}
+.res-type {
+  width: 50px;
+  font-weight: 600;
+  color: #ccc;
+}
+.res-count {
+  width: 40px;
+  text-align: right;
+  color: #aaa;
+}
+.res-bar-wrap {
+  flex: 1;
+  height: 4px;
+  background: #1a1a2e;
+  border-radius: 2px;
+  overflow: hidden;
+}
+.res-bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.5s;
+}
+.res-bar-fill.res-JS { background: #f7df1e; }
+.res-bar-fill.res-CSS { background: #264de4; }
+.res-bar-fill.res-Image { background: #e44d26; }
+.res-bar-fill.res-Font { background: #9b59b6; }
+.res-bar-fill.res-XHR { background: #2ecc71; }
+.res-bar-fill.res-Other { background: #95a5a6; }
+
+.res-size {
+  width: 60px;
+  text-align: right;
+  color: #aaa;
+  font-variant-numeric: tabular-nums;
+}
+
+.res-total {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #ccc;
+}
+.res-loading { color: #888; font-size: 12px; }
+
+/* Footer */
+.popup-footer {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+.btn {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid rgba(127,219,202,0.3);
+  background: transparent;
+  color: #7fdbca;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: all 0.2s;
+}
+.btn:hover {
+  background: rgba(127,219,202,0.1);
+  border-color: #7fdbca;
+}

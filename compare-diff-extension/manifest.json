@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "文本差异比较",
+  "version": "1.0.0",
+  "description": "支持 JSON、XML、YAML、纯文本的格式化差异比较工具",
+  "permissions": ["activeTab", "contextMenus", "storage"],
+  "background": {
+    "service_worker": "background/service-worker.js"
+  },
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content/context-menu.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

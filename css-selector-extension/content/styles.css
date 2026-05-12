@@ -1,0 +1,269 @@
+/**
+ * styles.css — 注入页面的面板样式
+ * 所有选择器以 #__css_selector_panel__ 为前缀，避免影响页面
+ */
+
+#__css_selector_panel__ {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  width: 340px;
+  max-height: 70vh;
+  background: #1e1e2e;
+  border: 1px solid #3a3a5c;
+  border-radius: 10px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-size: 12px;
+  color: #cdd6f4;
+  z-index: 2147483645;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateX(20px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  pointer-events: none;
+  user-select: none;
+}
+
+#__css_selector_panel__.__panel_visible__ {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: all;
+}
+
+/* Header */
+#__css_selector_panel__ .__panel_header__ {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: #181825;
+  border-bottom: 1px solid #3a3a5c;
+  cursor: move;
+}
+
+#__css_selector_panel__ .__panel_title_row__ {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#__css_selector_panel__ .__panel_title__ {
+  font-size: 13px;
+  font-weight: 600;
+  color: #89b4fa;
+  letter-spacing: 0.5px;
+}
+
+/* 锁定状态徽章 */
+#__css_selector_panel__ .__panel_lock_badge__ {
+  font-size: 10px;
+  padding: 1px 6px;
+  border-radius: 8px;
+  background: #313244;
+  color: #6c7086;
+  transition: all 0.2s ease;
+}
+
+#__css_selector_panel__ .__panel_lock_badge__.__lock_active__ {
+  background: #ff9800;
+  color: #fff;
+}
+
+#__css_selector_panel__ .__panel_actions__ {
+  display: flex;
+  gap: 6px;
+}
+
+#__css_selector_panel__ .__panel_btn__ {
+  background: #313244;
+  border: 1px solid #45475a;
+  color: #a6adc8;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s ease;
+}
+
+#__css_selector_panel__ .__panel_btn__:hover {
+  background: #45475a;
+  color: #cdd6f4;
+}
+
+#__css_selector_panel__ .__panel_close__ {
+  padding: 3px 6px;
+  font-size: 12px;
+}
+
+/* Body */
+#__css_selector_panel__ .__panel_body__ {
+  padding: 10px 14px;
+  overflow-y: auto;
+  max-height: calc(70vh - 100px);
+}
+
+#__css_selector_panel__ .__panel_section__ {
+  margin-bottom: 12px;
+}
+
+#__css_selector_panel__ .__panel_label__ {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: #6c7086;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#__css_selector_panel__ .__panel_spec__ {
+  font-size: 11px;
+  color: #a6e3a1;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+#__css_selector_panel__ .__panel_value__ {
+  display: block;
+  padding: 8px 10px;
+  background: #181825;
+  border: 1px solid #313244;
+  border-radius: 6px;
+  color: #f9e2af;
+  font-size: 11.5px;
+  line-height: 1.5;
+  word-break: break-all;
+  white-space: pre-wrap;
+}
+
+#__css_selector_panel__ .__panel_compact__ {
+  color: #89b4fa;
+  font-weight: 600;
+}
+
+/* Breadcrumb */
+#__css_selector_panel__ .__panel_breadcrumb__ {
+  padding: 8px 10px;
+  background: #181825;
+  border: 1px solid #313244;
+  border-radius: 6px;
+  font-size: 11px;
+  line-height: 1.8;
+  color: #bac2de;
+}
+
+#__css_selector_panel__ .__bc_item__ {
+  display: inline-block;
+  padding: 1px 5px;
+  background: #313244;
+  border-radius: 3px;
+  color: #cdd6f4;
+}
+
+#__css_selector_panel__ .__bc_sep__ {
+  color: #585b70;
+  margin: 0 2px;
+}
+
+/* Rules */
+#__css_selector_panel__ .__panel_rules_section__ {
+  border-top: 1px solid #313244;
+  padding-top: 12px;
+}
+
+#__css_selector_panel__ .__no_rules__ {
+  color: #585b70;
+  font-style: italic;
+  font-size: 11px;
+}
+
+#__css_selector_panel__ .__rule_item__ {
+  padding: 6px 8px;
+  background: #181825;
+  border: 1px solid #313244;
+  border-radius: 5px;
+  margin-bottom: 4px;
+}
+
+#__css_selector_panel__ .__rule_selector__ {
+  color: #cba6f7;
+  font-size: 11px;
+  word-break: break-all;
+}
+
+#__css_selector_panel__ .__rule_source__ {
+  font-size: 10px;
+  color: #585b70;
+  margin-top: 2px;
+}
+
+/* Footer 快捷键提示 */
+#__css_selector_panel__ .__panel_footer__ {
+  display: none;
+  padding: 8px 14px;
+  background: #181825;
+  border-top: 1px solid #3a3a5c;
+  font-size: 10px;
+  color: #585b70;
+  text-align: center;
+}
+
+#__css_selector_panel__ .__panel_footer__ kbd {
+  display: inline-block;
+  background: #313244;
+  border: 1px solid #45475a;
+  border-radius: 3px;
+  padding: 0 4px;
+  font-family: inherit;
+  font-size: 10px;
+  color: #a6adc8;
+  line-height: 16px;
+}
+
+/* Scrollbar */
+#__css_selector_panel__ .__panel_body__::-webkit-scrollbar {
+  width: 5px;
+}
+
+#__css_selector_panel__ .__panel_body__::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#__css_selector_panel__ .__panel_body__::-webkit-scrollbar-thumb {
+  background: #45475a;
+  border-radius: 3px;
+}
+
+#__css_selector_panel__ .__panel_body__::-webkit-scrollbar-thumb:hover {
+  background: #585b70;
+}
+
+/* ==================== Toast 提示 ==================== */
+
+.__css_selector_toast__ {
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  padding: 8px 20px;
+  background: #313244;
+  border: 1px solid #45475a;
+  color: #a6e3a1;
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 13px;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  z-index: 2147483647;
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.__css_selector_toast__.__toast_visible__ {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}

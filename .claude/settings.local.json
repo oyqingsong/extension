@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node:*)",
+      "Bash(npm install:*)",
+      "Bash(curl:*)",
+      "Bash(file \"D:/yqs/myProject/wx/extension/compare-diff-extension/icons/\"*.png)",
+      "Bash(xxd -l 8 \"D:/yqs/myProject/wx/extension/compare-diff-extension/icons/icon16.png\")"
+    ]
+  }
+}

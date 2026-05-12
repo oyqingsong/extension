@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup">
+    <header class="popup-header">
+      <h1>Performance Monitor</h1>
+      <span class="url" id="page-url"></span>
+    </header>
+
+    <section class="section" id="web-vitals-section">
+      <h2 class="section-title">Core Web Vitals</h2>
+      <div class="vitals-grid">
+        <div class="vital-card" id="card-lcp">
+          <div class="vital-value">—</div>
+          <div class="vital-name">LCP</div>
+          <div class="vital-desc">最大内容绘制</div>
+        </div>
+        <div class="vital-card" id="card-cls">
+          <div class="vital-value">—</div>
+          <div class="vital-name">CLS</div>
+          <div class="vital-desc">累积布局偏移</div>
+        </div>
+        <div class="vital-card" id="card-inp">
+          <div class="vital-value">—</div>
+          <div class="vital-name">INP</div>
+          <div class="vital-desc">交互到绘制延迟</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">页面加载</h2>
+      <div class="metrics-list">
+        <div class="metric-row">
+          <span class="metric-label">TTFB</span>
+          <span class="metric-bar"><span class="metric-fill" id="bar-ttfb"></span></span>
+          <span class="metric-value" id="val-ttfb">—</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-label">FCP</span>
+          <span class="metric-bar"><span class="metric-fill" id="bar-fcp"></span></span>
+          <span class="metric-value" id="val-fcp">—</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-label">DOM Ready</span>
+          <span class="metric-bar"><span class="metric-fill" id="bar-domReady"></span></span>
+          <span class="metric-value" id="val-domReady">—</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-label">Page Load</span>
+          <span class="metric-bar"><span class="metric-fill" id="bar-load"></span></span>
+          <span class="metric-value" id="val-load">—</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">运行时性能</h2>
+      <div class="runtime-grid">
+        <div class="runtime-item">
+          <div class="runtime-value" id="val-fps">—</div>
+          <div class="runtime-label">FPS</div>
+        </div>
+        <div class="runtime-item">
+          <div class="runtime-value" id="val-memory">—</div>
+          <div class="runtime-label">内存</div>
+        </div>
+        <div class="runtime-item">
+          <div class="runtime-value" id="val-domNodes">—</div>
+          <div class="runtime-label">DOM 节点</div>
+        </div>
+        <div class="runtime-item">
+          <div class="runtime-value" id="val-longTasks">0</div>
+          <div class="runtime-label">长任务</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">资源加载</h2>
+      <div class="resources-summary" id="resources-summary">
+        <div class="res-loading">加载中...</div>
+      </div>
+    </section>
+
+    <footer class="popup-footer">
+      <button id="btn-toggle-overlay" class="btn">隐藏浮动窗口</button>
+      <button id="btn-refresh" class="btn">刷新数据</button>
+    </footer>
+  </div>
+  <script src="../shared/utils.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

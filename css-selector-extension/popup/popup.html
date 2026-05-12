@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Selector Highlighter</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="logo">
+        <span class="logo-icon">{}</span>
+        <span class="logo-text">CSS Selector</span>
+      </div>
+      <span class="version">v1.0</span>
+    </div>
+
+    <div class="toggle-section">
+      <div class="toggle-info">
+        <div class="toggle-label">选择器高亮</div>
+        <div class="toggle-desc">在页面上实时显示鼠标悬停元素的选择器</div>
+      </div>
+      <label class="switch">
+        <input type="checkbox" id="toggleSwitch">
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="shortcut-section">
+      <div class="shortcut-label">操作方式</div>
+      <div class="shortcut-item">
+        <span class="shortcut-desc">悬停查看</span>
+        <kbd class="shortcut-key">鼠标移动</kbd>
+      </div>
+      <div class="shortcut-item">
+        <span class="shortcut-desc">锁定元素</span>
+        <kbd class="shortcut-key">鼠标点击</kbd>
+      </div>
+      <div class="shortcut-item">
+        <span class="shortcut-desc">复制选择器</span>
+        <kbd class="shortcut-key">C</kbd>
+      </div>
+      <div class="shortcut-item">
+        <span class="shortcut-desc">复制完整路径</span>
+        <kbd class="shortcut-key">Shift + C</kbd>
+      </div>
+      <div class="shortcut-item">
+        <span class="shortcut-desc">解锁/关闭</span>
+        <kbd class="shortcut-key">Esc</kbd>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="tips-section">
+      <div class="tips-label">使用流程</div>
+      <ul class="tips-list">
+        <li>悬停到目标元素 → 点击锁定（变橙色）</li>
+        <li>按 <kbd style="font-size:10px;background:#313244;border:1px solid #45475a;color:#bac2de;padding:0 4px;border-radius:3px;">C</kbd> 快速复制选择器</li>
+        <li>或移到面板点「复制选择器」按钮</li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
